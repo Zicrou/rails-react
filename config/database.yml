@@ -17,13 +17,22 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+# THESE TREE LINES ARE FOR THE DOCKER  
+  host: db
+  username: postgres
+  password: password
+  ## END OF THOSE 3 LINES
+
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: rails_react_app_development
+  # THIS LINE IS FOR A DEAFULT RAILS APPLICATION
+  #database: rails_react_app_development
+  # THIS LINE IS FOR DOCKER
+  database: myapp_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +66,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rails_react_app_test
+  # THIS LINE IS FOR A DEAFULT RAILS APPLICATION
+  #database: rails_react_app_test
+  # THIS LINE IS FOR DOCKER
+  database: myapp_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
